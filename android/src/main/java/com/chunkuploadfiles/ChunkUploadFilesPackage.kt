@@ -9,8 +9,8 @@ import java.util.HashMap
 
 class ChunkUploadFilesPackage : BaseReactPackage() {
   override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
-    return if (name == ChunkUploadFilesModule.NAME) {
-      ChunkUploadFilesModule(reactContext)
+    return if (name == ChunkUploadFiles.NAME) {
+      ChunkUploadFiles(reactContext)
     } else {
       null
     }
@@ -19,9 +19,9 @@ class ChunkUploadFilesPackage : BaseReactPackage() {
   override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
     return ReactModuleInfoProvider {
       val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
-      moduleInfos[ChunkUploadFilesModule.NAME] = ReactModuleInfo(
-        ChunkUploadFilesModule.NAME,
-        ChunkUploadFilesModule.NAME,
+      moduleInfos[ChunkUploadFiles.NAME] = ReactModuleInfo(
+        ChunkUploadFiles.NAME,
+        ChunkUploadFiles.NAME,
         false,  // canOverrideExistingModule
         false,  // needsEagerInit
         false,  // isCxxModule

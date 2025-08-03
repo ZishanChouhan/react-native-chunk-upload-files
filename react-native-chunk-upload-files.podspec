@@ -3,7 +3,7 @@ require "json"
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 
 Pod::Spec.new do |s|
-  s.name         = "ChunkUploadFiles"
+  s.name         = "react-native-chunk-upload-files"
   s.version      = package["version"]
   s.summary      = package["description"]
   s.homepage     = package["homepage"]
@@ -13,8 +13,12 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => min_ios_version_supported }
   s.source       = { :git => "https://github.com/ZishanChouhan/react-native-chunk-upload-files.git", :tag => "#{s.version}" }
 
-  s.source_files = "ios/**/*.{h,m,mm,cpp}"
+  s.source_files = "ios/**/*.{h,m,mm,cpp,swift}"
   s.private_header_files = "ios/**/*.h"
+
+  s.dependency "React-Core"
+
+  s.dependency "Alamofire", "~> 5.10.2"
 
  install_modules_dependencies(s)
 end

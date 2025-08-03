@@ -2,13 +2,19 @@
   "name": "react-native-chunk-upload-files",
   "version": "0.1.0",
   "description": "this library sends the files in small chunks.",
-  "main": "./lib/module/index.js",
-  "types": "./lib/typescript/src/index.d.ts",
+  "main": "./lib/commonjs/index.js",
+  "types": "./lib/typescript/commonjs/src/index.d.ts",
   "exports": {
     ".": {
       "source": "./src/index.tsx",
-      "types": "./lib/typescript/src/index.d.ts",
-      "default": "./lib/module/index.js"
+      "import": {
+        "types": "./lib/typescript/module/src/index.d.ts",
+        "default": "./lib/module/index.js"
+      },
+      "require": {
+        "types": "./lib/typescript/commonjs/src/index.d.ts",
+        "default": "./lib/commonjs/index.js"
+      }
     },
     "./package.json": "./package.json"
   },
@@ -79,7 +85,8 @@
     "prettier": "^3.0.3",
     "react": "19.0.0",
     "react-native": "0.79.2",
-    "react-native-builder-bob": "^0.40.8",
+    "react-native-builder-bob": "^0.40.12",
+    "react-native-codegen": "^0.70.7",
     "release-it": "^17.10.0",
     "turbo": "^1.10.7",
     "typescript": "^5.2.2"
@@ -141,11 +148,12 @@
         }
       ],
       [
-        "typescript",
+        "commonjs",
         {
-          "project": "tsconfig.build.json"
+          "esm": true
         }
-      ]
+      ],
+      "typescript"
     ]
   },
   "codegenConfig": {
@@ -153,12 +161,20 @@
     "type": "modules",
     "jsSrcsDir": "src",
     "android": {
-      "javaPackageName": "com.chunkuploadfiles"
+      "javaPackageName": "com.zishan.chunkuploadfiles"
+    },
+    "ios": {
+      "modulesClassName": "ChunkUploadFilesModules"
     }
   },
   "create-react-native-library": {
     "languages": "kotlin-objc",
     "type": "turbo-module",
     "version": "0.50.2"
-  }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
+  "module": "./lib/module/index.js"
 }

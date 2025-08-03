@@ -12,12 +12,33 @@ npm install react-native-chunk-upload-files
 
 
 ```js
-import { multiply } from 'react-native-chunk-upload-files';
+import { post } from 'react-native-chunk-upload-files';
 
-// ...
+post(uploadUrl, key, uri, "xyz", {key1: "true", key2: 1, key3:{value : "xyz"}}).then(res => {
+    console.log("res", res);
+    // {message: "Successfully Uploaded !!", status: true}
+}).catch(err => console.log("error", err))
 
-const result = multiply(3, 7);
 ```
+
+post(options: UploadFileOptions): Promise<Object>
+type UploadFileOptions = {
+    to: string;          // URL to upload file to
+    key:string;          // the key in which the file goes to the backend server
+    uri:string;          // URI of the file
+    token?: string;      // Optional, for example Authorization token/ JWT token
+    otherParams?: Object // Optional, otherParams is a json object which can have any key/value pair such as key1: "true", key2: 1, key3: {value : "xyz"} which you want to pass in request along with the file.
+}
+
+| Property      | Type                | Description                                                              |
+| ------------- | ------------------- | ------------------------------------------------------------------------ |
+| `to`          | `string`            | **Required**. Upload URL                                                 |
+| `key`         | `string`            | **Required**. The field name for the file in the multipart form          |
+| `uri`         | `string`            | **Required**. URI of the file to be uploaded                             |
+| `token`       | `string` (optional) | Optional authorization token (e.g., JWT)                                 |
+| `otherParams` | `Object` (optional) | Additional key-value pairs (can be string, number, nested objects, etc.) |
+
+
 
 
 ## Contributing
