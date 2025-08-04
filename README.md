@@ -1,11 +1,17 @@
 # react-native-chunk-upload-files
 
-this library sends the files in small chunks.
+this library sends the files such as images, video in small chunks.
 
 ## Installation
 
 ```sh
 npm install react-native-chunk-upload-files
+```
+## iOS
+After installing the package, navigate to the ios directory and install the CocoaPods dependencies:
+
+```sh
+cd ios && pod install
 ```
 
 ## Usage
@@ -20,7 +26,7 @@ post(uploadUrl, key, uri, "xyz", {key1: "true", key2: 1, key3:{value : "xyz"}}).
 }).catch(err => console.log("error", err))
 
 ```
-
+```js
 post(options: UploadFileOptions): Promise<Object>
 type UploadFileOptions = {
     to: string;          // URL to upload file to
@@ -29,6 +35,7 @@ type UploadFileOptions = {
     token?: string;      // Optional, for example Authorization token/ JWT token
     otherParams?: Object // Optional, otherParams is a json object which can have any key/value pair such as key1: "true", key2: 1, key3: {value : "xyz"} which you want to pass in request along with the file.
 }
+```
 
 | Property      | Type                | Description                                                              |
 | ------------- | ------------------- | ------------------------------------------------------------------------ |
@@ -39,7 +46,17 @@ type UploadFileOptions = {
 | `otherParams` | `Object` (optional) | Additional key-value pairs (can be string, number, nested objects, etc.) |
 
 
-
+To get the upload progress register the event as follows: 
+```js
+useEffect(() => {
+    const eventListener = addListener("progress", progress => {
+      console.log("progress", progress);
+    })
+    return () => {
+      eventListener?.remove()
+    }
+  }, [])
+```
 
 ## Contributing
 
