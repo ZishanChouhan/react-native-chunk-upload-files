@@ -1,6 +1,6 @@
 {
   "name": "react-native-chunk-upload-files",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "this library sends the files in small chunks.",
   "main": "./lib/commonjs/index.js",
   "types": "./lib/typescript/commonjs/src/index.d.ts",
